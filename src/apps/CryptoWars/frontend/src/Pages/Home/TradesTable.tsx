@@ -6,12 +6,31 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import { Trades } from './useHistoryOrders';
 import { LineChart } from './LineChart';
 import { Grid } from '@mui/material';
 
 interface TradesProps {
   trades: Trades;
+}
+
+export type Trades = Array<Trade>;
+
+export interface Trade {
+  symbol: string;
+  size: number;
+  orderId: string;
+  fee: number;
+  state: string; // filled
+  side: string; // close_short
+  marginCoin: string; // USDT
+  filledAmount: number;
+  orderType: string; // limit
+  leverage: string;
+  marginMode: string; // crossed
+  cTime: string; // unix timestamp
+  uTime: string; // unix timestamp
+  totalProfits: number;
+  posSide: string; // short / long
 }
 
 const formatFromTimeStampToChartDate = (timeStamp: string) =>
