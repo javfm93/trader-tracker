@@ -34,14 +34,14 @@ export async function signRequest<T extends object | undefined = {}>(
   const signRequestParams = serializeParams(data);
   const paramsStr = timestamp + 'GET' + endpoint + signRequestParams;
 
-  res.sign = await signMessage(paramsStr, credentials.secretKey);
+  res.sign = await signMessage(paramsStr, credentials.secretKey ?? '');
   res.queryParamsWithSign = signRequestParams;
   return res;
 }
 
 export function serializeParams<T extends object | undefined = {}>(
   params: T,
-  strict_validation = false,
+  strictValidation = false,
   prefixWith: string = '?'
 ): string {
   if (!params) {
@@ -53,7 +53,7 @@ export function serializeParams<T extends object | undefined = {}>(
     .map(key => {
       // @ts-ignore
       const value = params[key];
-      if (strict_validation === true && typeof value === 'undefined') {
+      if (strictValidation === true && typeof value === 'undefined') {
         throw new Error('Failed to sign API request due to undefined parameter');
       }
       return `${key}=${value}`;
@@ -69,7 +69,7 @@ export const getSignedGet = (
   pageSize: string,
   isPre: boolean
 ) => {
-  const apiSecret = credentials.secretKey;
+  const apiSecret = credentials.secretKey ?? '';
   const url = 'https://api.bitget.com'; // host
   const uri = '/api/mix/v1/order/historyProductType'; // path;
   const method = 'GET';

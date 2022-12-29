@@ -64,8 +64,8 @@ export class Server {
         {
           headers: {
             'X-CHANNEL-API-CODE': '3tem',
-            'ACCESS-KEY': credentials.apikey,
-            'ACCESS-PASSPHRASE': credentials.password,
+            'ACCESS-KEY': credentials.apikey ?? '',
+            'ACCESS-PASSPHRASE': credentials.password ?? '',
             'ACCESS-TIMESTAMP': signedRequest.timestamp,
             'ACCESS-SIGN': signedRequest.base64,
             'Content-Type': 'application/json'
