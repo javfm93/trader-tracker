@@ -61,7 +61,7 @@ variable "vpc_private_subnets" {
 }
 
 variable "cidr_blocks" {
-  type    = map(string)
+  type = map(string)
   default = {
     all_ip_addresses = "0.0.0.0/0"
   }
