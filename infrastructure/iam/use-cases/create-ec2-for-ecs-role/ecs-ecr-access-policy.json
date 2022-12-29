@@ -1,0 +1,30 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": [
+        "ecs:SubmitTaskStateChange",
+        "ecs:DiscoverPollEndpoint",
+        "logs:DescribeLogStreams",
+        "ecs:CreateCluster",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:GetAuthorizationToken",
+        "ecs:StartTask",
+        "ecs:RegisterContainerInstance",
+        "logs:PutLogEvents",
+        "logs:CreateLogGroup",
+        "ecs:SubmitAttachmentStateChanges",
+        "ecs:Poll",
+        "logs:CreateLogStream",
+        "ecs:StartTelemetrySession",
+        "ecr:BatchGetImage",
+        "ecs:SubmitContainerStateChange",
+        "ecs:DeregisterContainerInstance",
+        "ecr:BatchCheckLayerAvailability"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
