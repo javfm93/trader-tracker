@@ -69,6 +69,12 @@ resource "aws_cloudfront_distribution" "this" {
       }
     }
   }
+  custom_error_response {
+    error_caching_min_ttl = 3000
+    error_code            = 404
+    response_code         = 200
+    response_page_path    = "/index.html"
+  }
   origin {
     domain_name = aws_s3_bucket.this.bucket_regional_domain_name
     origin_id   = "${var.app_name}-origin"
