@@ -49,7 +49,7 @@ resource "aws_cloudfront_origin_access_identity" "this" {
 
 resource "aws_cloudfront_distribution" "this" {
   enabled             = true
-  default_root_object = "index.html"
+  default_root_object = "latest/index.html"
   price_class         = "PriceClass_100"
   wait_for_deployment = true
 

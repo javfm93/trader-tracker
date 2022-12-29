@@ -33,6 +33,6 @@ output "cloudfront-id" {
   value = module.create-new-frontend.cloudfront_id
 }
 
-output cloudfront-dns {
+output "cloudfront-dns" {
   value = module.create-new-frontend.cloudfront_dns
 }
