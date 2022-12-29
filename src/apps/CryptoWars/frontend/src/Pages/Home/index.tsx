@@ -5,7 +5,7 @@ export const Home = (): JSX.Element => {
   const { result, isLoading } = useHistoryOrders();
 
   if (isLoading) {
-    return <></>;
+    return <> im loading</>;
   }
   if (!isLoading && !result) {
     return <>An error happen</>;
