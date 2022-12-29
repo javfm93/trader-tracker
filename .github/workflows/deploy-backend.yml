@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - '.github/workflows/deploy-backend.yml'
+      - '!src/apps/CryptoWars/frontend/**'
+
 jobs:
   deploy-backend:
     runs-on: ubuntu-latest
