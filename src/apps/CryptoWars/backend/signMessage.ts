@@ -1,5 +1,5 @@
 import { createHmac } from 'crypto';
-import { credentials } from '../../../../backend/apikey';
+import { credentials } from './apikey';
 
 export async function signMessage(message: string, secret: string): Promise<string> {
   const hmac = createHmac('sha256', secret).update(message);

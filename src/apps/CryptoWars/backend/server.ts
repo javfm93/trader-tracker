@@ -9,10 +9,29 @@ import httpStatus from 'http-status';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { logger } from '../../../Contexts/Shared/Infrastructure/WinstonLogger';
-import { getSignedGet } from '../frontend/src/Pages/Home/signMessage';
+import { getSignedGet } from './signMessage';
 import { credentials } from './apikey';
 import axios from 'axios';
-import { Trades } from '../frontend/src/Pages/Home/useHistoryOrders';
+
+export type Trades = Array<Trade>;
+
+export interface Trade {
+  symbol: string;
+  size: number;
+  orderId: string;
+  fee: number;
+  state: string; // filled
+  side: string; // close_short
+  marginCoin: string; // USDT
+  filledAmount: number;
+  orderType: string; // limit
+  leverage: string;
+  marginMode: string; // crossed
+  cTime: string; // unix timestamp
+  uTime: string; // unix timestamp
+  totalProfits: number;
+  posSide: string; // short / long
+}
 
 export interface HistoryOrdersResponse {
   data: {
