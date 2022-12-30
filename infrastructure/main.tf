@@ -15,24 +15,3 @@ module "create-new-frontend" {
   source   = "./use-cases/create-new-frontend"
   app_name = var.app_name
 }
-
-output "elb" {
-  value = module.create-new-backend.elb
-}
-
-output "ecr-repository" {
-  value = module.create-new-backend.ecr-repository
-}
-
-output "frontend-bucket-name" {
-  value = module.create-new-frontend.bucket_name
-}
-
-
-output "cloudfront-id" {
-  value = module.create-new-frontend.cloudfront_id
-}
-
-output "cloudfront-dns" {
-  value = module.create-new-frontend.cloudfront_dns
-}

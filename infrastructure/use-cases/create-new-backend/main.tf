@@ -8,7 +8,7 @@ module "networking" {
 }
 
 module "create-ec2-for-ecs" {
-  source                      = "../../ec2/use-cases/create-ec2-for-ecs"
+  source                      = "../../compute/use-cases/create-ec2-for-ecs"
   app_name                    = var.app_name
   app_port                    = var.app_port
   ec2_iam_instance_profile_id = module.ec2-role.instance_profile_id
@@ -23,7 +23,7 @@ module "ec2-role" {
 }
 
 module "ecs-cluster-with-service-and-task" {
-  source             = "../../ecs/modules/cluster-with-service-and-task"
+  source             = "../../containers/modules/ecs-cluster-with-service-and-task"
   app_name           = var.app_name
   app_port           = var.app_port
   ecr_repository_url = module.ecr-repository.ecr_repository_url
@@ -33,7 +33,7 @@ module "ecs-cluster-with-service-and-task" {
 }
 
 module "ecr-repository" {
-  source   = "../../ecr/modules/repository"
+  source   = "../../containers/modules/ecr/"
   app_name = var.app_name
 }
 

@@ -7,7 +7,3 @@ resource "aws_ecr_repository" "this" {
 output "ecr_repository_url" {
   value = aws_ecr_repository.this.repository_url
 }
-
-# docker build -t [aws_ecr_url] .
-# `aws ecr get-login-password`
-# docker push [aws_ecr_url]
