@@ -33,6 +33,7 @@ module "autoscaling" {
   instance_type           = var.instance_type
   region                  = var.region
   public_subnets_id       = var.public_subnets_id
+  load_balancers_name     = [module.elb.name]
 }
 
 module "elb" {

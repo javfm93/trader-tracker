@@ -13,9 +13,12 @@ resource "aws_autoscaling_group" "this" {
   name                = "${var.app_name}-autoscaling"
   vpc_zone_identifier = var.public_subnets_id
 
-  launch_configuration = aws_launch_configuration.this.name
-  max_size             = 2
-  min_size             = 1
+  launch_configuration      = aws_launch_configuration.this.name
+  max_size                  = 2
+  min_size                  = 1
+  health_check_type         = "ELB"
+  health_check_grace_period = 300
+  load_balancers            = var.load_balancers_name
   tag {
     key                 = "Name"
     propagate_at_launch = true

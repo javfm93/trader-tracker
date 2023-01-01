@@ -33,3 +33,7 @@ variable "iam_instance_profile_id" {
 variable "security_groups_id" {
   type = list(string)
 }
+
+variable "load_balancers_name" {
+  type = list(string)
+}
