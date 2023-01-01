@@ -1,5 +1,5 @@
 module "s3-website" {
-  source                    = "../../storage/use-cases/s3-website"
+  source                    = "../../storage/use-cases/create-bucket-website"
   app_name                  = var.app_name
   cloudfront_origin_iam_arn = module.cloudfront.origin_iam_arn
 }

@@ -23,13 +23,14 @@ module "ec2-role" {
 }
 
 module "ecs-cluster-with-service-and-task" {
-  source             = "../../containers/modules/ecs-cluster-with-service-and-task"
-  app_name           = var.app_name
-  app_port           = var.app_port
-  ecr_repository_url = module.ecr-repository.ecr_repository_url
-  ecs_iam_role_arn   = module.ecs-role.arn
-  elb_name           = module.create-ec2-for-ecs.elb_name
-  region             = var.region
+  source                      = "../../containers/modules/ecs-cluster-with-service-and-task"
+  app_name                    = var.app_name
+  app_port                    = var.app_port
+  ecr_repository_url          = module.ecr-repository.ecr_repository_url
+  ecs_task_execution_role_arn = module.ecs-task-execution-role.arn
+  elb_name                    = module.create-ec2-for-ecs.elb_name
+  region                      = var.region
+  parameters                  = var.parameters
 }
 
 module "ecr-repository" {
@@ -37,8 +38,9 @@ module "ecr-repository" {
   app_name = var.app_name
 }
 
-module "ecs-role" {
-  source = "../../iam/use-cases/create-ecs-role-with-container-management"
+module "ecs-task-execution-role" {
+  source     = "../../iam/use-cases/create-task-execution-role-with-ssm-access"
+  parameters = var.parameters
 }
 
 module "cloudwatch" {

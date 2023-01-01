@@ -66,7 +66,10 @@ export class Server {
     this.express.use(router);
 
     router.get('/', async (req: Request, res: Response) => {
-      res.status(httpStatus.OK).send('this is the root!');
+      const env = process.env.BITGET_PASSWORD
+        ? process.env.BITGET_PASSWORD.charAt(process.env.BITGET_PASSWORD.length - 1)
+        : 'not env';
+      res.status(httpStatus.OK).send('this is the root!' + env);
     });
     // registerRoutes(router);
     router.get('/history', async (req: Request, res: Response) => {

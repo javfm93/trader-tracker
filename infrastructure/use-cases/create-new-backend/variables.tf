@@ -27,3 +27,7 @@ variable "vpc_private_subnets" {
 variable "cidr_blocks" {
   type = map(string)
 }
+
+variable "parameters" {
+  type = list(object({ name = string, valueFrom = string }))
+}

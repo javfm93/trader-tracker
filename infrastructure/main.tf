@@ -9,9 +9,27 @@ module "create-new-backend" {
   vpc_cidr_block      = var.vpc_cidr_block
   vpc_private_subnets = var.vpc_private_subnets
   vpc_public_subnets  = var.vpc_public_subnets
+  parameters          = local.parameters
 }
 
 module "create-new-frontend" {
   source   = "./use-cases/create-new-frontend"
   app_name = var.app_name
+}
+
+locals {
+  parameters = [
+    {
+      name      = "BITGET_API_KEY"
+      valueFrom = module.bitget-api-key-secret.arn
+    },
+    {
+      name      = "BITGET_SECRET_KEY"
+      valueFrom = module.bitget-secret-key-secret.arn
+    },
+    {
+      name      = "BITGET_PASSWORD"
+      valueFrom = module.bitget-password-secret.arn
+    }
+  ]
 }
