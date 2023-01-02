@@ -58,13 +58,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: ${{ format('{0}-ecs-container', ${{secrets.APP_NAME}}) }} # todo: use this var in the terraform vars also
+          container-name: ${{ format('{0}-ecs-container', secrets.APP_NAME) }} # todo: use this var in the terraform vars also
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ format('{0}-ecs-service', ${{secrets.APP_NAME}}) }}
-          cluster: ${{ format('{0}-ecs-cluster', ${{secrets.APP_NAME}}) }}
+          service: ${{ format('{0}-ecs-service', secrets.APP_NAME) }}
+          cluster: ${{ format('{0}-ecs-cluster', secrets.APP_NAME) }}
           wait-for-service-stability: true
