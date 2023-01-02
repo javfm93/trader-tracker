@@ -7,10 +7,10 @@ resource "aws_elb" "this" {
     lb_protocol       = "http"
   }
   health_check {
-    healthy_threshold   = 3
-    interval            = 60
+    healthy_threshold   = 2
+    interval            = 30
     target              = "HTTP:${var.app_port}/"
-    timeout             = 30
+    timeout             = 5
     unhealthy_threshold = 3
   }
   cross_zone_load_balancing   = true
