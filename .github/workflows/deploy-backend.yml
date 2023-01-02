@@ -40,6 +40,7 @@ jobs:
         run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
 
       - name: Build, tag, and push image to Amazon ECR
+        id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ format('{0}-repository', secrets.APP_NAME) }}
