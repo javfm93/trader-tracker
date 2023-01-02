@@ -10,7 +10,7 @@ resource "aws_ecs_cluster" "this" {
 resource "aws_ecs_task_definition" "this" {
   execution_role_arn    = var.ecs_task_execution_role_arn
   container_definitions = local.container_definition
-  family                = var.app_name
+  family                = "${var.app_name}-task-definition"
 }
 
 resource "aws_ecs_service" "this" {
