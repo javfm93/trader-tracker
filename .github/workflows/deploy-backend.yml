@@ -64,3 +64,4 @@ jobs:
           service: ${{ format('{0}-ecs-service', secrets.APP_NAME) }}
           cluster: ${{ format('{0}-ecs-cluster', secrets.APP_NAME) }}
           wait-for-service-stability: true
+          force-new-deployment: true
