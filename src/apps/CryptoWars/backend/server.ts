@@ -69,7 +69,7 @@ export class Server {
       const env = process.env.BITGET_PASSWORD
         ? process.env.BITGET_PASSWORD.charAt(process.env.BITGET_PASSWORD.length - 1)
         : 'not env';
-      res.status(httpStatus.OK).send('this is the root with the new deployment!' + env);
+      res.status(httpStatus.OK).send('this is the root with the new deployment! number 7' + env);
     });
     // registerRoutes(router);
     router.get('/history', async (req: Request, res: Response) => {
