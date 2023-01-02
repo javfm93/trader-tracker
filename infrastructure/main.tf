@@ -1,5 +1,5 @@
 module "create-new-backend" {
-  source              = "./use-cases/create-new-backend"
+  source              = "git::git@github.com:javfm93/infrastructure-aws-terraform.git//src/use-cases/create-new-backend"
   app_name            = var.app_name
   app_port            = var.app_port
   cidr_blocks         = var.cidr_blocks
@@ -13,7 +13,7 @@ module "create-new-backend" {
 }
 
 module "create-new-frontend" {
-  source   = "./use-cases/create-new-frontend"
+  source   = "git::git@github.com:javfm93/infrastructure-aws-terraform.git//src/use-cases/create-new-frontend"
   app_name = var.app_name
 }
 
