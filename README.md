@@ -8,6 +8,12 @@ In order to deploy the backend i need:
 - ECR repository
 
 todo:
+automatically, on code push, update the ecs task def with the new pushed image and deploy it
+
+- https://particule.io/en/blog/cicd-ecr-ecs/
+- https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-amazon-elastic-container-service
+
 automatise initial account and bucket creation
-take a look how to use secrets // use secrets injected in the docker image
+
 get the cloudfrontid and ecr repository from params
+

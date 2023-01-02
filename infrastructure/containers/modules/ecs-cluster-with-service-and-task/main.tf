@@ -4,38 +4,33 @@
 #   service_role: service-linked role with to manage scaling, launch, destruction...
 
 resource "aws_ecs_cluster" "this" {
-  name = "${var.app_name}-cluster"
+  name = "${var.app_name}-ecs-cluster"
 }
 
-// execution: pull img from ecr, take params, push to cloudwatch
-// taskrole = access required by the app. queues...etc
 resource "aws_ecs_task_definition" "this" {
   execution_role_arn    = var.ecs_task_execution_role_arn
-  container_definitions = local.task-definition
+  container_definitions = local.container_definition
   family                = var.app_name
 }
 
 resource "aws_ecs_service" "this" {
-  name            = var.app_name
+  name            = "${var.app_name}-ecs-service"
   cluster         = aws_ecs_cluster.this.id
   task_definition = aws_ecs_task_definition.this.arn
   desired_count   = 2
-  #  I think i dont need this role as it is automatic
-  #  iam_role        = var.ecs_iam_role_arn
-  // necessary role to connect with the load balancer
   load_balancer {
     elb_name       = var.elb_name
-    container_name = var.app_name
+    container_name = "${var.app_name}-ecs-container"
     container_port = var.app_port
   }
 }
 
 locals {
-  task-definition = jsonencode([
+  container_definition = jsonencode([
     {
       essential : true,
       memory : 256,
-      name : var.app_name,
+      name : "${var.app_name}-ecs-container",
       cpu : 256,
       image : replace(var.ecr_repository_url, "https://", ""),
       workingDirectory : "/code",
