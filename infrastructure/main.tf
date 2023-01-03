@@ -5,8 +5,8 @@ data "terraform_remote_state" "core" {
   backend = "s3"
 
   config = {
-    bucket = "trader-tracker"
-    key    = "infrastructure/core.tfstate"
+    bucket = "trader-tracker-infrastructure"
+    key    = "core.tfstate"
     region = "eu-west-1"
   }
 }
