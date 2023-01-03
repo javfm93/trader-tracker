@@ -1,19 +1,30 @@
+// here we need to receive the state of the pieces that are common, vpc, subnets, elb, cluster_name
+// also, we can do the same but with ssm parameters, better idea!!
+
+data "terraform_remote_state" "core" {
+  backend = "s3"
+
+  config = {
+    bucket = "trader-tracker"
+    key    = "infrastructure/core.tfstate"
+    region = "eu-west-1"
+  }
+}
+
 module "create-new-backend" {
-  source              = "git::git@github.com:javfm93/infrastructure-aws-terraform.git//src/use-cases/create-new-backend"
-  app_name            = var.app_name
-  app_port            = var.app_port
-  cidr_blocks         = var.cidr_blocks
-  ecs-ami             = var.ecs-ami
-  instance_type       = var.instance_type
-  region              = var.region
-  vpc_cidr_block      = var.vpc_cidr_block
-  vpc_private_subnets = var.vpc_private_subnets
-  vpc_public_subnets  = var.vpc_public_subnets
-  parameters          = local.parameters
+  source         = "git@github.com:javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-backend"
+  app_name       = var.app_name
+  app_port       = var.app_port
+  cluster_id     = data.terraform_remote_state.core.outputs.cluster_id
+  desired_tasks  = 1
+  elb_name       = data.terraform_remote_state.core.outputs.elb_name
+  region         = var.region
+  ssm_parameters = local.parameters
+  vpc_id         = data.terraform_remote_state.core.outputs.vpc_id
 }
 
 module "create-new-frontend" {
-  source   = "git::git@github.com:javfm93/infrastructure-aws-terraform.git//src/use-cases/create-new-frontend"
+  source   = "git@github.com:javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-frontend"
   app_name = var.app_name
 }
 
