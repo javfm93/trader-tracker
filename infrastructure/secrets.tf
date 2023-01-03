@@ -1,5 +1,5 @@
 module "bitget-api-key-secret" {
-  source = "git::https://@github.com:javfm93/infrastructure-aws-terraform.git//src/storage/use-cases/create-secure-parameter"
+  source = "git::https://@github.com/javfm93/infrastructure-aws-terraform.git//src/storage/use-cases/create-secure-parameter"
   name   = "/${var.app_name}/external/bitget/api-key"
   value  = "to define"
 }
