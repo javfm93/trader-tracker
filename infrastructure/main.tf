@@ -27,7 +27,7 @@ module "create-new-backend" {
 }
 
 module "create-new-frontend" {
-  source   = "git::https://github.com:javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-frontend"
+  source   = "git::https://github.com/javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-frontend"
   app_name = var.app_name
 }
 
