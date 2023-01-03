@@ -33,6 +33,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+      - name: Allow access to core infra repo
+        run: |
+          git config --local --remove-section http."https://github.com/"
+          git config --global url."https://foo:${GH_TOKEN}@github.com/javfm93".insteadOf "https://github.com/javfm93"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Terraform Init
         id: init
         run: terraform init

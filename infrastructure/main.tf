@@ -11,6 +11,9 @@ data "terraform_remote_state" "core" {
   }
 }
 
+#+   source = "git::https://github.com/your-org/terraform-modules.git//path/to/module?ref=master"
+
+
 module "create-new-backend" {
   source         = "git@github.com:javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-backend"
   app_name       = var.app_name
