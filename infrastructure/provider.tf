@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "trader-tracker"
-    key    = "terraform/terraform.tfstate"
+    bucket = "trader-tracker-infrastructure"
+    key    = "trader-tracker-backend.tfstate"
     region = "eu-west-1"
   }
 }
