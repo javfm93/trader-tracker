@@ -15,7 +15,7 @@ data "terraform_remote_state" "core" {
 
 
 module "create-new-backend" {
-  source         = "git@github.com:javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-backend"
+  source         = "git::https://github.com/javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-backend"
   app_name       = var.app_name
   app_port       = var.app_port
   cluster_id     = data.terraform_remote_state.core.outputs.cluster_id
@@ -27,7 +27,7 @@ module "create-new-backend" {
 }
 
 module "create-new-frontend" {
-  source   = "git@github.com:javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-frontend"
+  source   = "git::https://github.com:javfm93/trader-tracker-infrastructure.git//src/use-cases/create-new-frontend"
   app_name = var.app_name
 }
 
