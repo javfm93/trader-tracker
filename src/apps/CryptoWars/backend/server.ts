@@ -71,6 +71,11 @@ export class Server {
         : 'not env';
       res.status(httpStatus.OK).send('this is the root with the new deployment! number 9' + env);
     });
+
+    router.get('/health', (req, res) => {
+      res.status(200).send('Okay!');
+    });
+
     // registerRoutes(router);
     router.get('/history', async (req: Request, res: Response) => {
       const oneWeekAgo = new Date();
