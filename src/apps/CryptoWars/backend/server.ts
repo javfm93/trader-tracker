@@ -69,7 +69,9 @@ export class Server {
       const env = process.env.BITGET_PASSWORD
         ? process.env.BITGET_PASSWORD.charAt(process.env.BITGET_PASSWORD.length - 1)
         : 'not env';
-      res.status(httpStatus.OK).send('this is the root with the new deployment! number 9' + env);
+      res
+        .status(httpStatus.OK)
+        .json({ status: 'this is the root with the new deployment! number 9' + env });
     });
 
     router.get('/health', (req, res) => {
