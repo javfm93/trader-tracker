@@ -63,7 +63,7 @@ export class Server {
     this.express.use(compress());
     const router = Router();
     router.use(errorHandler());
-    this.express.use(router);
+    this.express.use('/trader-tracker-backend', router);
 
     router.get('/', async (req: Request, res: Response) => {
       const env = process.env.BITGET_PASSWORD
