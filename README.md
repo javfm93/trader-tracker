@@ -1,3 +1,7 @@
+This is an infrastructure project.
+
+This one deploys a frontend service using the main repository.
+
 In order to deploy the frontend i need:
 
 - Cloudfront id
